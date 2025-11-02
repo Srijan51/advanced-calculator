@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Math Toolkit</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/nerdamer@latest/nerdamer.all.min.js"></script>
+    
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="title">Advanced Math Toolkit</h1>
+
+        <div class="tab-navigation">
+            <button class="tab-button active" data-tab="simple">Simple</button>
+            <button class="tab-button" data-tab="symbolic">Symbolic</button>
+            <button class="tab-button" data-tab="solver">Solver</button>
+            <button class="tab-button" data-tab="matrix">Matrix</button>
+        </div>
+
+        <div class="tab-content">
+
+            <div id="tab-panel-simple" class="tab-panel active">
+                <div id="simple-display" class="form-input">0</div>
+                <div id="calc-grid">
+                    <button class="calc-btn" data-value="C">C</button>
+                    <button class="calc-btn" data-value="CE">CE</button>
+                    <button class="calc-btn op-btn" data-value="/">÷</button>
+                    <button class="calc-btn op-btn" data-value="*">×</button>
+
+                    <button class="calc-btn" data-value="7">7</button>
+                    <button class="calc-btn" data-value="8">8</button>
+                    <button class="calc-btn" data-value="9">9</button>
+                    <button class="calc-btn op-btn" data-value="-">−</button>
+
+                    <button class="calc-btn" data-value="4">4</button>
+                    <button class="calc-btn" data-value="5">5</button>
+                    <button class="calc-btn" data-value="6">6</button>
+                    <button class="calc-btn op-btn" data-value="+">+</button>
+
+                    <button class="calc-btn" data-value="1">1</button>
+                    <button class="calc-btn" data-value="2">2</button>
+                    <button class="calc-btn" data-value="3">3</button>
+                    <button class="calc-btn eq-btn" data-value="=" rowspan="2">=</button>
+
+                    <button class="calc-btn" data-value="0" colspan="2">0</button>
+                    <button class="calc-btn" data-value=".">.</button>
+                </div>
+            </div>
+
+            <div id="tab-panel-symbolic" class="tab-panel hidden">
+                <label for="calcInput">Enter Expression (use 'x' as variable)</label>
+                <input type-="text" id="calcInput" class="form-input" placeholder="e.g., x^2 + sin(x)">
+                
+                <div class="button-group">
+                    <button id="btnSimplify" class="btn btn-primary">Simplify</button>
+                    <button id="btnIntegrate" class="btn btn-secondary">Integrate (by x)</button>
+                    <button id="btnDifferentiate" class="btn btn-tertiary">Differentiate (by x)</button>
+                </div>
+
+                <label>Result</label>
+                <div id="calcResult" class="result-box"></div>
+            </div>
+
+            <div id="tab-panel-solver" class="tab-panel hidden">
+                <h3>Solve System of 4 Linear Equations</h3>
+                <p>Enter 4 equations in 4 variables (e.g., x, y, z, w).</p>
+                
+                <div class="input-group">
+                    <input type="text" id="eq1" class="form-input" placeholder="Eq 1: 2*x + y - z + w = 5">
+                    <input type="text" id="eq2" class="form-input" placeholder="Eq 2: x - y + z - w = -1">
+                    <input type="text" id="eq3" class="form-input" placeholder="Eq 3: 3*x + 2*y + 2*z = 10">
+                    <input type="text" id="eq4" class="form-input" placeholder="Eq 4: x + y + w = 6">
+                </div>
+
+                <button id="btnSolveSystem" class="btn btn-primary full-width">Solve System</button>
+
+                <label>Solution</label>
+                <div id="solverResult" class="result-box"></div>
+            </div>
+
+            <div id="tab-panel-matrix" class="tab-panel hidden">
+                <h3>Matrix Operations</h3>
+                <p>Enter matrices in bracket notation, e.g., [[1,2],[3,4]]</p>
+
+                <div class="matrix-grid">
+                    <div>
+                        <label for="matrixA">Matrix A</label>
+                        <textarea id="matrixA" class="form-textarea" placeholder="[[1, 0], [0, 1]]"></textarea>
+                    </div>
+                    <div>
+                        <label for="matrixB">Matrix B</label>
+                        <textarea id="matrixB" class="form-textarea" placeholder="[[5, 6], [7, 8]]"></textarea>
+                    </div>
+                </div>
+
+                <div class="matrix-ops-grid">
+                    <button id="btnMatrixAdd" class="btn btn-primary">A + B</button>
+                    <button id="btnMatrixMultiply" class="btn btn-primary">A * B</button>
+                    <button id="btnMatrixDetA" class="btn btn-secondary">det(A)</button>
+                    <button id="btnMatrixInvA" class="btn btn-secondary">inv(A)</button>
+                </div>
+
+                <label>Result</label>
+                <div id="matrixResult" class="result-box"></div>
+            </div>
+
+        </div> </div> </body>
+</html>
