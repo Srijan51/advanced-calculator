@@ -7,10 +7,7 @@
     
     <link rel="stylesheet" href="style.css">
     
-    <script src="https://cdn.jsdelivr.net/npm/nerdamer@latest/nerdamer.all.min.js"></script>
-    
-    <script src="script.js" defer></script>
-</head>
+    </head>
 <body>
 
     <div class="container">
@@ -29,7 +26,7 @@
                 <div id="simple-display" class="form-input">0</div>
                 <div id="calc-grid">
                     <button class="calc-btn" data-value="C">C</button>
-                    <button class="calc-btn" data-value="CE">CE</button>
+                    <button class="calc-btn" data-value="DEL">DEL</button>
                     <button class="calc-btn op-btn" data-value="/">÷</button>
                     <button class="calc-btn op-btn" data-value="*">×</button>
 
@@ -54,13 +51,16 @@
             </div>
 
             <div id="tab-panel-symbolic" class="tab-panel hidden">
-                <label for="calcInput">Enter Expression (use 'x' as variable)</label>
-                <input type-="text" id="calcInput" class="form-input" placeholder="e.g., x^2 + sin(x)">
+                <label for="calcInput">Enter Expression</label>
+                <input type="text" id="calcInput" class="form-input" placeholder="e.g., x^2 + sin(x)">
                 
+                <label for="symbolicVar">Variable</label>
+                <input type="text" id="symbolicVar" class="form-input" placeholder="e.g., x (default)" style="width: 100px;">
+
                 <div class="button-group">
                     <button id="btnSimplify" class="btn btn-primary">Simplify</button>
-                    <button id="btnIntegrate" class="btn btn-secondary">Integrate (by x)</button>
-                    <button id="btnDifferentiate" class="btn btn-tertiary">Differentiate (by x)</button>
+                    <button id="btnIntegrate" class="btn btn-secondary">Integrate</button>
+                    <button id="btnDifferentiate" class="btn btn-tertiary">Differentiate</button>
                 </div>
 
                 <label>Result</label>
@@ -68,15 +68,18 @@
             </div>
 
             <div id="tab-panel-solver" class="tab-panel hidden">
-                <h3>Solve System of 4 Linear Equations</h3>
-                <p>Enter 4 equations in 4 variables (e.g., x, y, z, w).</p>
+                <h3>Solve System of Linear Equations</h3>
                 
-                <div class="input-group">
-                    <input type="text" id="eq1" class="form-input" placeholder="Eq 1: 2*x + y - z + w = 5">
-                    <input type="text" id="eq2" class="form-input" placeholder="Eq 2: x - y + z - w = -1">
-                    <input type="text" id="eq3" class="form-input" placeholder="Eq 3: 3*x + 2*y + 2*z = 10">
-                    <input type="text" id="eq4" class="form-input" placeholder="Eq 4: x + y + w = 6">
-                </div>
+                <label for="solverVarCount">Select Number of Variables</label>
+                <select id="solverVarCount" class="form-select">
+                    <option value="2">2 Variables</option>
+                    <option value="3">3 Variables</option>
+                    <option value="4" selected>4 Variables</option>
+                </select>
+
+                <p>Enter your equations (e.g., 2*x + y = 5)</p>
+                <div id="solverEqContainer" class="input-group">
+                    </div>
 
                 <button id="btnSolveSystem" class="btn btn-primary full-width">Solve System</button>
 
@@ -86,16 +89,51 @@
 
             <div id="tab-panel-matrix" class="tab-panel hidden">
                 <h3>Matrix Operations</h3>
-                <p>Enter matrices in bracket notation, e.g., [[1,2],[3,4]]</p>
+                <p>Select matrix dimensions and enter values in the grid.</p>
 
                 <div class="matrix-grid">
                     <div>
                         <label for="matrixA">Matrix A</label>
-                        <textarea id="matrixA" class="form-textarea" placeholder="[[1, 0], [0, 1]]"></textarea>
+                        <div class="matrix-dim-selector">
+                            <select id="matrixARows" class="form-select">
+                                <option value="1">1</option>
+                                <option value="2" selected>2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                            <span>&times;</span>
+                            <select id="matrixACols" class="form-select">
+                                <option value="1">1</option>
+                                <option value="2" selected>2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                            <span>Rows &times; Cols</span>
+                        </div>
+                        <div id="matrixAGrid" class="matrix-input-grid">
+                            </div>
                     </div>
+                    
                     <div>
                         <label for="matrixB">Matrix B</label>
-                        <textarea id="matrixB" class="form-textarea" placeholder="[[5, 6], [7, 8]]"></textarea>
+                        <div class="matrix-dim-selector">
+                            <select id="matrixBRows" class="form-select">
+                                <option value="1">1</option>
+                                <option value="2" selected>2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                            <span>&times;</span>
+                            <select id="matrixBCols" class="form-select">
+                                <option value="1">1</option>
+                                <option value="2" selected>2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                             <span>Rows &times; Cols</span>
+                        </div>
+                        <div id="matrixBGrid" class="matrix-input-grid">
+                            </div>
                     </div>
                 </div>
 
@@ -103,12 +141,15 @@
                     <button id="btnMatrixAdd" class="btn btn-primary">A + B</button>
                     <button id="btnMatrixMultiply" class="btn btn-primary">A * B</button>
                     <button id="btnMatrixDetA" class="btn btn-secondary">det(A)</button>
-                    <button id="btnMatrixInvA" class="btn btn-secondary">inv(A)</button>
+                    <button id="btnMatrixInvA" class="btn btn-secondary">inv(A)</U_BUTTON>
                 </div>
 
                 <label>Result</label>
                 <div id="matrixResult" class="result-box"></div>
             </div>
 
-        </div> </div> </body>
+        </div> </div> <script src="https://cdn.jsdelivr.net/npm/nerdamer@latest/nerdamer.all.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
 </html>

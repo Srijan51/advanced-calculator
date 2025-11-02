@@ -84,7 +84,7 @@ label {
 }
 
 /* --- Forms & Inputs --- */
-.form-input, .form-textarea {
+.form-input, .form-textarea, .form-select {
     width: 100%;
     background-color: #374151; /* gray-700 */
     color: white;
@@ -96,10 +96,20 @@ label {
     font-size: 1rem;
 }
 
-.form-input:focus, .form-textarea:focus {
+.form-input:focus, .form-textarea:focus, .form-select:focus {
     outline: none;
     border-color: #3b82f6; /* blue-500 */
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+.form-select {
+    width: auto; /* Allow selects to be sized by content */
+    padding-right: 2.5rem; /* Space for dropdown arrow */
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239ca3af' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
 }
 
 .form-textarea {
@@ -174,6 +184,7 @@ label {
     overflow-x: auto;
     min-height: 50px;
     border: 1px solid #374151; /* gray-700 */
+    white-space: pre-wrap; /* Allow results to wrap */
 }
 
 .result-error {
@@ -184,13 +195,58 @@ label {
 .matrix-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
 }
 @media (min-width: 640px) {
     .matrix-grid {
         grid-template-columns: 1fr 1fr;
     }
 }
+
+.matrix-dim-selector {
+    display: grid;
+    grid-template-columns: auto auto auto 1fr;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.matrix-dim-selector .form-select {
+    width: 70px;
+}
+.matrix-dim-selector span {
+    text-align: center;
+    color: #9ca3af;
+}
+
+
+.matrix-input-grid {
+    display: grid;
+    gap: 0.5rem;
+    background-color: #111827;
+    border: 1px solid #374151;
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+}
+
+.matrix-cell {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    text-align: center;
+    background-color: #374151;
+    border: 1px solid #4b5563;
+    color: white;
+    border-radius: 0.25rem;
+    -moz-appearance: textfield; /* Firefox */
+}
+/* Hide spin buttons on number inputs */
+.matrix-cell::-webkit-outer-spin-button,
+.matrix-cell::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 
 .matrix-ops-grid {
     display: grid;
@@ -215,6 +271,8 @@ label {
     margin-bottom: 1.5rem;
     color: white;
     background-color: #111827; /* gray-900 */
+    word-wrap: break-word;
+    overflow-x: auto;
 }
 
 #calc-grid {
